@@ -1508,17 +1508,8 @@ where
 # MAGIC ### Write to AZURE
 
 # COMMAND ----------
-BLOB_NAME = 'replenishment-modelling'
-blob_file_nm = '1_data_processing/modelling_orders'
-W_PATH = '{}/{}'.format(CONT_PATH.format(BLOB_NAME, STORAGE_ACCOUNT), blob_file_nm)
-
-rem_blob_files(blob_loc=blob_file_nm,
-               cont_nm=BLOB_NAME,
-               block_blob_service=BLOCK_BLOB_SERVICE)
-W_PATH = ''
 (spark.sql(tmp_sql)
  .write
  .mode('overwrite')
- .option('header', 'true')
- .format('parquet')
- .save(W_PATH))
+ .format('delta')
+ .saveAsTable('plModellingData-Replenishment'))
