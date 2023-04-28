@@ -19,6 +19,7 @@ from pyspark.sql import functions as F
 if platform.uname().node == 'GL22WD4W2DY33':
     from src._initSparkCluster import *
     from src.dataProcessor import DataProcessor
+    from src.removeBlobFiles import *
 
 # COMMAND ----------
 
@@ -1517,9 +1518,16 @@ where
 
 # MAGIC %md
 # MAGIC
-# MAGIC ### Write DELTA
+# MAGIC ### Write Parquet into BLOB STORAGE
 
 # COMMAND ----------
+BLOB_NAME = 'replenishment-modelling'
+blob_file_nm = '1_model_df/group_replenishment_modelling/pl_modelling_data'
+W_PATH = '{}/{}'.format(CONT_PATH.format(BLOB_NAME, STORAGE_ACCOUNT), blob_file_nm)
+
+rem_blob_files(blob_loc=blob_file_nm,
+               cont_nm=BLOB_NAME,
+               block_blob_service=BLOCK_BLOB_SERVICE)
 
 (spark.sql(tmp_sql)
  .write
