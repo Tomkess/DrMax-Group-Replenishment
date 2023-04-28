@@ -33,6 +33,7 @@ if platform.uname().node == 'GL22WD4W2DY33':
 # MAGIC #### Replenishment Target
 
 # COMMAND ----------
+
 replenishmentTarget = DataProcessor(
     blob_name='replenishment-modelling',
     blob_loc='0_db/pl/meiro_environment/replenishment_target.csv',
@@ -61,6 +62,7 @@ replenishment_target.createOrReplaceTempView('replenishment_target')
 # MAGIC #### Identity Identifiers
 
 # COMMAND ----------
+
 identityIdentifiers = DataProcessor(
     blob_name='replenishment-modelling',
     blob_loc='0_db/pl/meiro_environment/identity_identifiers.csv',
@@ -84,6 +86,7 @@ identity_identifiers.createOrReplaceTempView('identity_identifiers')
 # MAGIC #### Identity Sources
 
 # COMMAND ----------
+
 identitySources = DataProcessor(
     blob_name='replenishment-modelling',
     blob_loc='0_db/pl/meiro_environment/identity_sources.csv',
@@ -198,6 +201,7 @@ coupon_used.createOrReplaceTempView('coupon_used')
 # MAGIC #### Products
 
 # COMMAND ----------
+
 products = DataProcessor(
     blob_name='replenishment-modelling',
     blob_loc='0_db/pl/meiro_environment/product_features/product_feed.csv',
@@ -226,6 +230,7 @@ products.createOrReplaceTempView('products')
 # MAGIC #### Identity Attributes
 
 # COMMAND ----------
+
 identityAttributes = DataProcessor(
     blob_name='replenishment-modelling',
     blob_loc='0_db/pl/meiro_environment/identity_attributes/*.csv',
@@ -474,6 +479,7 @@ utm_campaign.createOrReplaceTempView('utm_campaign')
 # MAGIC ##### Product Views
 
 # COMMAND ----------
+
 productViews = DataProcessor(
     blob_name='replenishment-modelling',
     blob_loc='0_db/pl/meiro_environment/web_features/products_viewed.csv',
@@ -499,6 +505,7 @@ product_views.createOrReplaceTempView('product_views')
 # MAGIC ##### Web banner clicked
 
 # COMMAND ----------
+
 bannerClicked = DataProcessor(
     blob_name='replenishment-modelling',
     blob_loc='0_db/pl/meiro_environment/web_features/web_banner_clicked.csv',
@@ -626,6 +633,7 @@ product_purchased_lastm.createOrReplaceTempView('product_purchased_lastm')
 # MAGIC ##### TOP5 UTM Sources Last Month
 
 # COMMAND ----------
+
 tmp_sql = """
 SELECT
     customer_entity_id,
@@ -717,6 +725,7 @@ utm_source_lastm.createOrReplaceTempView('utm_source_lastm')
 # MAGIC ##### TOP10 UTM Medium Last Month
 
 # COMMAND ----------
+
 tmp_sql = """
 SELECT
     customer_entity_id,
@@ -808,6 +817,7 @@ utm_medium_lastm.createOrReplaceTempView('utm_medium_lastm')
 # MAGIC ##### TOP50 UTM Campaigns Last Month
 
 # COMMAND ----------
+
 tmp_sql = """
 SELECT
     customer_entity_id,
@@ -947,6 +957,7 @@ product_views.createOrReplaceTempView('product_views')
 # MAGIC ##### TOP5 Banner Clicked
 
 # COMMAND ----------
+
 tmp_sql = """
 SELECT
     customer_entity_id,
@@ -1044,6 +1055,7 @@ banner_clicked_lastm.createOrReplaceTempView('banner_clicked_lastm')
 # MAGIC ##### TOP5 Banner Impression
 
 # COMMAND ----------
+
 tmp_sql = """
 SELECT
     customer_entity_id,
@@ -1505,11 +1517,13 @@ where
 
 # MAGIC %md
 # MAGIC
-# MAGIC ### Write to AZURE
+# MAGIC ### Write DELTA
 
 # COMMAND ----------
+
 (spark.sql(tmp_sql)
  .write
  .mode('overwrite')
- .format('delta')
- .saveAsTable('plModellingData-Replenishment'))
+ .option('header', 'true')
+ .format('parquet')
+ .save(W_PATH))
