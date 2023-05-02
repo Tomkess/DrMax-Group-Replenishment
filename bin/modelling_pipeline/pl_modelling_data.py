@@ -1169,6 +1169,7 @@ SELECT
     trg.purchase_dt,
     trg.last_purchase_dt,
     trg.days_since_last_purchase,
+    log(trg.days_since_last_purchase) as log_days_since_last_purchase,
     avg(trg.days_since_last_purchase) over(partition by trg.product_id) as longterm_average_since_last_purchase,
     idi.n_identifiers,
     
