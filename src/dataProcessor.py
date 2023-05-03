@@ -25,14 +25,22 @@ if platform.uname().node == 'GL22WD4W2DY33':
 
 class DataProcessor:
 
-    def __init__(self, blob_name: str, blob_loc: str, header: bool, sep: str, infer_schema: bool,
-                 encoding: str) -> None:
+    def __init__(self,
+                 blob_name: str,
+                 blob_loc: str,
+                 header: bool,
+                 sep: str,
+                 infer_schema: bool,
+                 encoding: str,
+                 multi_line) -> None:
+
         self.blob_name = blob_name
         self.blob_loc = blob_loc
         self.header = header
         self.sep = sep
         self.infer_schema = infer_schema
         self.encoding = encoding
+        self.multi_line = multi_line
 
     def read_csv_from_blob(self) -> pyspark.sql.DataFrame:
         """This function reads csv data from blob storage using pyspark.
@@ -46,7 +54,9 @@ class DataProcessor:
             sep=self.sep,
             header=self.header,
             inferSchema=self.infer_schema,
-            encoding=self.encoding
+            encoding=self.encoding,
+            quote='"',
+            multiLine=self.multi_line
         )
 
         # return data
