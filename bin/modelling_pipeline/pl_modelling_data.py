@@ -41,7 +41,8 @@ replenishmentTarget = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 replenishment_target = replenishmentTarget.process_data(sql_code="""
     SELECT 
@@ -70,7 +71,8 @@ identityIdentifiers = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 identity_identifiers = identityIdentifiers.process_data(sql_code="""
     SELECT 
@@ -94,7 +96,8 @@ identitySources = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 identity_sources = identitySources.process_data(sql_code="""
     SELECT 
@@ -127,7 +130,8 @@ transactionalQuantity = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 transactional_quantity = transactionalQuantity.process_data(sql_code="""
     SELECT 
@@ -154,7 +158,8 @@ transactionalAttributes = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 transactional_attributes = transactionalAttributes.process_data(sql_code="""
     SELECT 
@@ -182,7 +187,8 @@ couponUsed = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 coupon_used = couponUsed.process_data(sql_code="""
     SELECT 
@@ -209,7 +215,8 @@ products = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=True
 )
 products = products.process_data(sql_code="""
     SELECT 
@@ -238,7 +245,8 @@ identityAttributes = DataProcessor(
     header=True,
     sep='~',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 identity_attributes = identityAttributes.process_data(sql_code="""
     SELECT 
@@ -312,7 +320,8 @@ receivedCampaigns = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 
 received_campaigns = receivedCampaigns.process_data(sql_code="""
@@ -341,7 +350,8 @@ openedCampaigns = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 opened_campaigns = openedCampaigns.process_data(sql_code="""
     SELECT 
@@ -369,7 +379,8 @@ clickedCampaigns = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 clicked_campaigns = clickedCampaigns.process_data(sql_code="""
     SELECT 
@@ -403,7 +414,8 @@ utmSource = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 utm_source = utmSource.process_data(sql_code="""
     SELECT 
@@ -429,7 +441,8 @@ utmMedium = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 utm_medium = utmMedium.process_data(sql_code="""
     SELECT 
@@ -455,7 +468,8 @@ utmCampaign = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 utm_campaign = utmCampaign.process_data(sql_code="""
     SELECT 
@@ -487,7 +501,8 @@ productViews = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 product_views = productViews.process_data(sql_code="""
     SELECT 
@@ -513,7 +528,8 @@ bannerClicked = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 banner_clicked = bannerClicked.process_data(sql_code="""
     SELECT 
@@ -540,7 +556,8 @@ bannerImpression = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 banner_impression = bannerImpression.process_data(sql_code="""
     SELECT 
@@ -567,7 +584,8 @@ webSearches = DataProcessor(
     header=True,
     sep=',',
     infer_schema=False,
-    encoding='utf-8'
+    encoding='utf-8',
+    multi_line=False
 )
 web_searches = webSearches.process_data(sql_code="""
     SELECT 
