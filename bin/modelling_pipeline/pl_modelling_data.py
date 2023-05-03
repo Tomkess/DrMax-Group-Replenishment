@@ -1175,10 +1175,10 @@ SELECT
     
     -- PRODUCT
     -- prd.item_id,
-    prd.first_category,
-    prd.second_category,
-    prd.third_category,
-    prd.brand,
+    IFNULL(prd.first_category, 'Unknown') AS first_category,
+    IFNULL(prd.second_category, 'Unknown') AS second_category,
+    IFNULL(prd.third_category, 'Unknown') AS third_category,
+    IFNULL(prd.brand, 'Unknown') AS brand,
     IFNULL(prd.price, 0) AS price,
     
     -- IDENTITY
