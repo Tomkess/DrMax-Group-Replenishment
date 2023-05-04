@@ -386,12 +386,12 @@ class ElasticNetCV:
         # get feature names
         feature_names = self.get_feature_names()
         feature_names['feature_id'] = feature_names['feature_id'].astype(int)
+        feature_names['std'] = self.pipeline_model.stages[-2].std
+        feature_names['mean'] = self.pipeline_model.stages[-2].mean
         feature_names = feature_names.drop(['n_rows'], axis=1).reset_index(drop=True)
 
         # get selected features
         selected_features = pd.DataFrame(data={'feature_id': self.pipeline_model.stages[-1].selectedFeatures})
-        selected_features['std'] = self.pipeline_model.stages[-2].std
-        selected_features['mean'] = self.pipeline_model.stages[-2].mean
         selected_features['coefficients'] = self.cv_model.bestModel.coefficients
         selected_features['scaler_name'] = self.scaler_name
         selected_features['estimation_dt'] = datetime.now()
