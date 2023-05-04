@@ -14,6 +14,8 @@
 # COMMAND ----------
 
 import platform
+from datetime import datetime
+
 import pandas as pd
 from typing import List, Any, Tuple
 
@@ -388,7 +390,11 @@ class ElasticNetCV:
 
         # get selected features
         selected_features = pd.DataFrame(data={'feature_id': self.pipeline_model.stages[-1].selectedFeatures})
+        selected_features['std'] = self.pipeline_model.stages[-2].std
+        selected_features['mean'] = self.pipeline_model.stages[-2].mean
         selected_features['coefficients'] = self.cv_model.bestModel.coefficients
+        selected_features['scaler_name'] = self.scaler_name
+        selected_features['estimation_dt'] = datetime.now()
         selected_features['is_selected'] = 1
 
         # merge feature names and selected features
