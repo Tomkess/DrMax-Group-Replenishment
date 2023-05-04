@@ -123,7 +123,7 @@ class ElasticNetCV:
 
         # define vectorizer
         vectorizer_model = VectorAssembler(inputCols=ifeatures, outputCol='features')
-        print('Vectorizer - Assemble multiple column into one!')
+        print('Vectorizer - Assemble multiple columns into one!')
         self.vectorizer_model = vectorizer_model
 
         return vectorizer_model
@@ -280,10 +280,11 @@ class ElasticNetCV:
             sclr = self.minmax_scaler()
         if self.scaler_name == 'StandardScaler':
             sclr = self.standard_scaler()
-        if self.scaler_name == 'MaxAbsScaler':
-            sclr = self.maxabs_scaler()
-        if self.scaler_name == 'Normalizer':
-            sclr = self.normalizer()
+
+        # if self.scaler_name == 'MaxAbsScaler':
+        #     sclr = self.maxabs_scaler()
+        # if self.scaler_name == 'Normalizer':
+        #     sclr = self.normalizer()
 
         # feature selection model
         feature_selector = self.feature_selector()
@@ -355,10 +356,12 @@ class ElasticNetCV:
             if count == 0:
                 f_data = spark.sql(tmp_sql.format(cat, cat + '__index', cat, cat + '__index')).toPandas()
                 f_data['orig_feature_name'] = cat
+                f_data['feature_type'] = 'categorical_attributes'
                 tmp_feature_db.append(f_data)
             else:
                 f_data = spark.sql(tmp_sql.format(cat, cat + '__index', cat, cat + '__index')).toPandas()
                 f_data['orig_feature_name'] = cat
+                f_data['feature_type'] = 'categorical_attributes'
                 f_data['feature_id'] = f_data['feature_id'] + tmp_feature_db[count - 1]['feature_id'].max() + 1
                 tmp_feature_db.append(f_data)
 
@@ -368,6 +371,7 @@ class ElasticNetCV:
         # Numerical Features
         num_features_db = pd.DataFrame(data={'feature_name': self.num_features})
         num_features_db['orig_feature_name'] = num_features_db['feature_name']
+        num_features_db['feature_type'] = 'numerical_attributes'
         num_features_db['feature_id'] = num_features_db.index + row_count
         num_features_db['n_rows'] = 0
         tmp_feature_db.append(num_features_db)
@@ -388,8 +392,11 @@ class ElasticNetCV:
         # get feature names
         feature_names = self.get_feature_names()
         feature_names['feature_id'] = feature_names['feature_id'].astype(int)
-        feature_names['std'] = self.pipeline_model.stages[-2].std
-        feature_names['mean'] = self.pipeline_model.stages[-2].mean
+
+        if self.scaler_name == 'MinMaxScaler':
+            feature_names['min'] = self.pipeline_model.stages[-2].originalMin.toArray()
+            feature_names['max'] = self.pipeline_model.stages[-2].originalMax.toArray()
+
         feature_names = feature_names.drop(['n_rows'], axis=1).reset_index(drop=True)
 
         # get selected features
@@ -408,4 +415,14 @@ class ElasticNetCV:
         return cv_model, master_data, master_features
 
     def transform(self):
-        pass
+        """This function transforms data with fitted model.
+        :return:
+            pyspark.sql.dataframe.DataFrame
+        """
+
+        # from pyspark model get prediction on master_data
+        master_data = self.master_data_after_pipeline
+        cv_model = self.cv_model
+        prediction = cv_model.transform(master_data)
+
+        return prediction, master_data, cv_model
