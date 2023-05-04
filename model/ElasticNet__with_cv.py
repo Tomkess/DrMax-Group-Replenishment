@@ -276,6 +276,8 @@ class ElasticNetCV:
 
         # scaler
         sclr = self.minmax_scaler()
+        if self.scaler_name == 'MinMaxScaler':
+            sclr = self.minmax_scaler()
         if self.scaler_name == 'StandardScaler':
             sclr = self.standard_scaler()
         if self.scaler_name == 'MaxAbsScaler':
@@ -393,6 +395,7 @@ class ElasticNetCV:
         # get selected features
         selected_features = pd.DataFrame(data={'feature_id': self.pipeline_model.stages[-1].selectedFeatures})
         selected_features['coefficients'] = self.cv_model.bestModel.coefficients
+        selected_features['intercept'] = self.cv_model.bestModel.intercept
         selected_features['scaler_name'] = self.scaler_name
         selected_features['estimation_dt'] = datetime.now()
         selected_features['is_selected'] = 1
