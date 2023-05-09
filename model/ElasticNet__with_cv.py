@@ -215,7 +215,7 @@ class ElasticNetCV:
             pyspark.ml.regression.LinearRegression
         """
 
-        elastic_net = LinearRegression(featuresCol='selected_features', labelCol=self.label)
+        elastic_net = LinearRegression(featuresCol='selected_features', labelCol=self.label, standardization=False)
         print('ElasticNet - Create Elastic Net Model!')
         self.model = elastic_net
 
