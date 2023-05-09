@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+.idea/httpRequests/*
+/data/tmp_data.csv
