@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6daa18ea-ce4e-4ef8-b131-ce6452cde582" name="Changes" comment="model estimation - save coefficients and cvModel in blob storage">
+      <change afterPath="$PROJECT_DIR$/adhoc/pl magento reple/Replenishment Potential.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jupyter Notebook" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Jlp97JKsQb8LoNdCc69EneCeu5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="cockroach&#10;spark" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../meiro_online_db" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\peter.tomko\OneDrive - Dr. Max BDC, s.r.o\Plocha\ds_projects\DrMax-Group-Replenishment\setup" />
+    </key>
+  </component>
+  <component name="RunManager" selected="HTTP Request.CZ Customers | #1">
+    <configuration name="CZ Customers | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/../DrMax-Group-Magento/api/examples/CZ Customers" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="fcb adspend - campaign age | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/../social_media/test api calls/fcb adspend - campaign age" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="dataLoader" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DrMax-Group-Replenishment" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bin/modelling_data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\peter.tomko\OneDrive - Dr. Max BDC, s.r.o\Plocha\ds_projects\DrMax-Group-Replenishment\bin\modelling_data\dataLoader.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.CZ Customers | #1" />
+        <item itemvalue="HTTP Request.fcb adspend - campaign age | #1" />
+        <item itemvalue="Python.dataLoader" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="create modelling data for PL Replenishment" />
+    <MESSAGE value="source codes for helper functions" />
+    <MESSAGE value="write modelling data to ayure blob" />
+    <MESSAGE value="adding logarithm of purchase difference in days" />
+    <MESSAGE value="replacing null values in category variables" />
+    <MESSAGE value="adding multiline option to data loader" />
+    <MESSAGE value="adding printing messages for each state" />
+    <MESSAGE value="adding standard deviation and mean into model output" />
+    <MESSAGE value="adding intercept and coefficients into output" />
+    <MESSAGE value="supporting only MinMax scaler" />
+    <MESSAGE value="do not perform standardization on already standardized data" />
+    <MESSAGE value="model estimation - save coefficients and cvModel in blob storage" />
+    <option name="LAST_COMMIT_MESSAGE" value="model estimation - save coefficients and cvModel in blob storage" />
+  </component>
+</project>
