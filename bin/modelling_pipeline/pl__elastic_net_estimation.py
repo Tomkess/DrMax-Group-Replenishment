@@ -337,7 +337,7 @@ master_feature_db.to_csv(proj_path + local_path, sep='~', index=False)
 BLOCK_BLOB_SERVICE.create_blob_from_path(container_name='replenishment-modelling',
                                          blob_name=blob_path,
                                          file_path=proj_path+local_path)
-print('Coefficients Writed!')
+print('Coefficients Written!')
 
 # COMMAND ----------
 
@@ -354,3 +354,4 @@ rem_blob_files(blob_loc=blob_path,
                block_blob_service=BLOCK_BLOB_SERVICE)
 
 cvModel.save(WPATH)
+print('cvModel Written!')
