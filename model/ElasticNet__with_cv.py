@@ -15,10 +15,9 @@
 
 import platform
 from datetime import datetime
-
-import pandas as pd
 from typing import List, Any, Tuple
 
+import pandas as pd
 import pyspark.sql
 from pyspark.ml import Pipeline, PipelineModel
 from pyspark.ml.evaluation import RegressionEvaluator
@@ -27,7 +26,7 @@ from pyspark.ml.feature import StandardScaler, MinMaxScaler, MaxAbsScaler, Norma
 from pyspark.ml.regression import LinearRegression
 from pyspark.ml.tuning import ParamGridBuilder, CrossValidator, CrossValidatorModel
 from pyspark.sql import DataFrame
-from pyspark.sql.functions import log, col, when, lit
+from pyspark.sql.functions import log, col, when
 
 if platform.uname().node == 'GL22WD4W2DY33':
     from src._initSparkCluster import *
