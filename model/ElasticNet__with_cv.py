@@ -27,6 +27,7 @@ from pyspark.ml.feature import StandardScaler, MinMaxScaler, MaxAbsScaler, Norma
 from pyspark.ml.regression import LinearRegression
 from pyspark.ml.tuning import ParamGridBuilder, CrossValidator, CrossValidatorModel
 from pyspark.sql import DataFrame
+from pyspark.sql.functions import log, col, when, lit
 
 if platform.uname().node == 'GL22WD4W2DY33':
     from src._initSparkCluster import *
@@ -43,6 +44,7 @@ class ElasticNetCV:
                  num_features: list,
                  metric_name: str,
                  scaler_name: str,
+                 log_transform: bool,
 
                  alpha: list,
                  l1_ratio: list,
@@ -72,6 +74,9 @@ class ElasticNetCV:
 
         # Data
         self.data = None
+
+        # Apply log transformation
+        self.log_transform = log_transform
 
         # Model
         self.model = None
@@ -109,11 +114,28 @@ class ElasticNetCV:
         # read parquet data
         tmp_data = spark.read.parquet('{}/{}'.format(CONT_PATH.format(self.blob_name, self.storage_account),
                                                      self.blob_loc))
-        self.data = tmp_data
+        # self.data = tmp_data
 
         # return data
         print('Data read from blob storage!')
         return tmp_data
+
+    def apply_log(self):
+        """This function applies log transformation on numerical attributes.
+        :return:
+            DataFrame
+        """
+        # create temporary view
+        tmp_data = self.read_parquet()
+
+        # apply log transformation
+        for num in self.num_features:
+            new_nm = 'log__' + num
+            tmp_data = tmp_data.withColumn(new_nm, when(col(num) <= 0, 0).otherwise(log(col(num))))
+
+        print('Log transformation applied on feature space!')
+        self.data = tmp_data
+        return self.data
 
     def vectorizer(self, ifeatures: list) -> VectorAssembler:
         """This function vectorizes data.
@@ -264,13 +286,19 @@ class ElasticNetCV:
         """
 
         # read data
-        tmp_data = self.read_parquet()
+        tmp_data = self.apply_log()
+
+        # names of logarithmic features
+        log_num_features = ['log__' + x for x in self.num_features]
 
         # one hot encode categorical features
         one_hot_encoded_features, indexers, encoder = self.one_hot_encoder()
 
         # vectorize all features
-        vec_features = one_hot_encoded_features + self.num_features
+        if self.log_transform:
+            vec_features = one_hot_encoded_features + log_num_features
+        else:
+            vec_features = one_hot_encoded_features + self.num_features
         vectorizer_model = self.vectorizer(ifeatures=vec_features)
         print(vec_features)
 
@@ -280,11 +308,10 @@ class ElasticNetCV:
             sclr = self.minmax_scaler()
         if self.scaler_name == 'StandardScaler':
             sclr = self.standard_scaler()
-
-        # if self.scaler_name == 'MaxAbsScaler':
-        #     sclr = self.maxabs_scaler()
-        # if self.scaler_name == 'Normalizer':
-        #     sclr = self.normalizer()
+        if self.scaler_name == 'MaxAbsScaler':
+            sclr = self.maxabs_scaler()
+        if self.scaler_name == 'Normalizer':
+            sclr = self.normalizer()
 
         # feature selection model
         feature_selector = self.feature_selector()
@@ -369,7 +396,11 @@ class ElasticNetCV:
             count += 1
 
         # Numerical Features
-        num_features_db = pd.DataFrame(data={'feature_name': self.num_features})
+        if self.log_transform:
+            num_features = ['log__' + x for x in self.num_features]
+        else:
+            num_features = self.num_features
+        num_features_db = pd.DataFrame(data={'feature_name': num_features})
         num_features_db['orig_feature_name'] = num_features_db['feature_name']
         num_features_db['feature_type'] = 'numerical_attributes'
         num_features_db['feature_id'] = num_features_db.index + row_count
