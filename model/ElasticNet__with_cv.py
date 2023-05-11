@@ -119,7 +119,7 @@ class ElasticNetCV:
         print('Data read from blob storage!')
         return tmp_data
 
-    def apply_log(self):
+    def apply_log(self) -> pyspark.sql.DataFrame:
         """This function applies log transformation on numerical attributes.
         :return:
             DataFrame
