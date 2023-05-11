@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6daa18ea-ce4e-4ef8-b131-ce6452cde582" name="Changes" comment="model estimation - save coefficients and cvModel in blob storage">
+    <list default="true" id="6daa18ea-ce4e-4ef8-b131-ce6452cde582" name="Changes" comment="optimize imports">
       <change afterPath="$PROJECT_DIR$/adhoc/pl magento reple/Replenishment Potential.ipynb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +40,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../meiro_online_db" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -107,6 +108,11 @@
     <MESSAGE value="supporting only MinMax scaler" />
     <MESSAGE value="do not perform standardization on already standardized data" />
     <MESSAGE value="model estimation - save coefficients and cvModel in blob storage" />
-    <option name="LAST_COMMIT_MESSAGE" value="model estimation - save coefficients and cvModel in blob storage" />
+    <MESSAGE value="workspace" />
+    <MESSAGE value="writing messages" />
+    <MESSAGE value="add logarithmic transformation" />
+    <MESSAGE value="add logarithmic transformation into pipeline, remove hour based variables" />
+    <MESSAGE value="optimize imports" />
+    <option name="LAST_COMMIT_MESSAGE" value="optimize imports" />
   </component>
 </project>
