@@ -67,9 +67,9 @@ final_cat_features = [
 
 tmp_final_num_features = [
     'n_identifiers',
-    'hours_since__first_event',
-    'hours_since__modified',
-    'hours_since__calculated',
+    # 'hours_since__first_event',
+    # 'hours_since__modified',
+    # 'hours_since__calculated',
     'customer_events_count',
     'se_click_rate',
     'se_email_clicked_count',
@@ -309,8 +309,9 @@ elnet_model = ElasticNetCV(
     scaler_name='MinMaxScaler',
     alpha=[0, 0.001, 0.01, 0.1, 0.2, 0.75, 1],
     l1_ratio=[0.001, 0.01, 0.1, 0.2, 0.75, 1],
-    top_features=100,
-    cv=50,
+    top_features=75,
+    log_transform=True,
+    cv=25,
     seed=42)
 
 cvModel, master_data, master_feature_db = elnet_model.fit()
