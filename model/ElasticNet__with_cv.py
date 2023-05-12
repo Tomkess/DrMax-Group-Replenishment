@@ -408,6 +408,10 @@ class ElasticNetCV:
 
         # return feature names
         feature_db = pd.concat(tmp_feature_db, axis=0).reset_index(drop=True)
+        if self.log_transform:
+            feature_db['apply_log'] = ['Log Applied' for x in range(feature_db.shape[0])]
+        else:
+            feature_db['apply_log'] = ['Log Not Applied' for x in range(feature_db.shape[0])]
         return feature_db
 
     def fit(self):
