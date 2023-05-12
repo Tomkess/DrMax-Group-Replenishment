@@ -349,10 +349,26 @@ print('Coefficients Written!')
 # COMMAND ----------
 blob_path = '5_model_storage/pl/meiro_estimation/cv_model/elastic_net__' + current_dt
 WPATH = '{}/{}'.format(CONT_PATH.format('replenishment-modelling', STORAGE_ACCOUNT), blob_path)
-
-rem_blob_files(blob_loc=blob_path,
-               cont_nm='replenishment-modelling',
-               block_blob_service=BLOCK_BLOB_SERVICE)
+rem_blob_files(blob_loc=blob_path, cont_nm='replenishment-modelling', block_blob_service=BLOCK_BLOB_SERVICE)
 
 cvModel.save(WPATH)
 print('cvModel Written!')
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC
+# MAGIC #### Write Master Data as Parquet
+
+# COMMAND ----------
+blob_path = '5_model_storage/pl/meiro_estimation/master_data'
+WPATH = '{}/{}'.format(CONT_PATH.format('replenishment-modelling', STORAGE_ACCOUNT), blob_path)
+rem_blob_files(blob_loc=blob_path, cont_nm='replenishment-modelling', block_blob_service=BLOCK_BLOB_SERVICE)
+
+(master_data
+ .write
+ .mode('overwrite')
+ .option('header', 'true')
+ .format('parquet')
+ .save(WPATH))
+print('Master Data Written!')
