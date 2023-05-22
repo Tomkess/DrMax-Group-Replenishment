@@ -17,7 +17,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run "/Repos/adm.test.tomko@drmaxtest.onmicrosoft.com/DrMax-Group-Replenishment/model/elastic net with cv"
+# MAGIC %run "/Repos/adm.test.tomko@drmaxtest.onmicrosoft.com/DrMax-Group-Replenishment/model/ElasticNet_with_CV"
 
 # COMMAND ----------
 
@@ -26,7 +26,7 @@ import platform
 if platform.uname().node == 'GL22WD4W2DY33':
     from src._initSparkCluster import *
     from src.removeBlobFiles import *
-    from model.ElasticNet__with_cv import *
+    from model.ElasticNet__with_CV import *
 
     proj_path = 'C:/Users/peter.tomko/OneDrive - Dr. Max BDC, s.r.o/Plocha/ds_projects/DrMax-Group-Replenishment'
     local_path = '/data/tmp_data.csv'
@@ -49,7 +49,7 @@ final_cat_features = [
     'me_device_brand_most_freq',
     'me_brand_purchase_most_freq',
     # 'me_country',
-    # 'me_city',
+    'me_city',
     # 'me_city_last',
     'me_payment_most_freq',
     'me_delivery_most_freq',
@@ -66,7 +66,7 @@ final_cat_features = [
 ]
 
 tmp_final_num_features = [
-    'n_identifiers',
+    # 'n_identifiers',
     # 'hours_since__first_event',
     # 'hours_since__modified',
     # 'hours_since__calculated',
