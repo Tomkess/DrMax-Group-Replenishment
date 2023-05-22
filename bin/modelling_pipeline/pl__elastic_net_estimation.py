@@ -365,21 +365,6 @@ print('cvModel Written - Historization!')
 
 # MAGIC %md
 # MAGIC
-# MAGIC ##### Actual
-
-# COMMAND ----------
-
-blob_path = '5_model_storage/pl/meiro_estimation/cv_model/elastic_net__actual'
-WPATH = '{}/{}'.format(CONT_PATH.format('replenishment-modelling', STORAGE_ACCOUNT), blob_path)
-rem_blob_files(blob_loc=blob_path, cont_nm='replenishment-modelling', block_blob_service=BLOCK_BLOB_SERVICE)
-
-cvModel.save(WPATH)
-print('cvModel Written - ACTUAL!')
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC
 # MAGIC #### Write Master Data as Parquet
 
 # COMMAND ----------
