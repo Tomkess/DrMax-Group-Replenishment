@@ -368,7 +368,7 @@ class ElasticNetCV:
         # Categorical Features
         tmp_feature_db = []
         tmp_sql = """
-        SELECT 
+        select 
             {} as feature_name, 
             {} as feature_id, 
             count(*) as n_rows 
