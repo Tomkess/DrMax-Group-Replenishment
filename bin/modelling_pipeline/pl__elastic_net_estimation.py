@@ -86,7 +86,7 @@ tmp_final_num_features = [
     'me_page_views_avg',
     'me_amount_spent_all',
     'me_amount_spent_avg',
-    'hours_since__me_transaction_datetime_first',
+    # 'hours_since__me_transaction_datetime_first',
     'hours_since__me_transaction_datetime_last',
     'me_transaction_count',
     'me_engagement',
@@ -287,7 +287,9 @@ tmp_final_num_features = [
     'source_5__last6m_utm_source'
 ]
 final_num_features = [x for x in tmp_final_num_features
-                      if 'last1m' not in x and 'last6m' not in x and 'last12m' not in x]
+                      if 'last1m' not in x and 'last6m' not in x and 'last12m' not in x
+                      and 'utm_source' not in x and 'utm_medium' not in x and 'utm_campaign' not in x
+                      and 'impression_banner' not in x and 'clicked_banner' not in x]
 
 # COMMAND ----------
 
