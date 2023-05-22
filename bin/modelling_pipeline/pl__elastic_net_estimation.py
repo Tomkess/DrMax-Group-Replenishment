@@ -42,27 +42,27 @@ else:
 
 # COMMAND ----------
 final_cat_features = [
-    'me_os_most_freq',
-    'me_browser_most_freq',
-    'me_device_type_most_freq',
-    'me_device_model_most_freq',
-    'me_device_brand_most_freq',
+    # 'brand',
+    # 'first_category',
     'me_brand_purchase_most_freq',
-    # 'me_country',
+    'me_browser_most_freq',
     'me_city',
     # 'me_city_last',
-    'me_payment_most_freq',
+    # 'me_country',
     'me_delivery_most_freq',
-    'me_device_model_most_freq_second',
+    'me_device_brand_most_freq',
     'me_device_brand_most_freq_second',
+    'me_device_model_most_freq',
+    'me_device_model_most_freq_second',
+    'me_device_type_most_freq',
     'me_device_type_most_freq_second',
-    'mx_gender_est_last'
-    # 'first_category',
-    # 'second_category',
-    # 'third_category',
-    # 'brand',
+    'mx_gender_est_last',
+    'me_os_most_freq',
+    'me_payment_most_freq'
     # 'me_product_purchase_most_freq',
     # 'me_product_viewed_most_freq',
+    # 'second_category',
+    # 'third_category',
 ]
 
 tmp_final_num_features = [
@@ -70,7 +70,7 @@ tmp_final_num_features = [
     # 'hours_since__first_event',
     # 'hours_since__modified',
     # 'hours_since__calculated',
-    'customer_events_count',
+    # 'customer_events_count',
     'se_click_rate',
     'se_email_clicked_count',
     'hours_since__se_email_clicked_date_last',
