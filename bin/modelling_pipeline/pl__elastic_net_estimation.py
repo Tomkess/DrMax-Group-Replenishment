@@ -17,7 +17,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run "/Repos/adm.test.tomko@drmaxtest.onmicrosoft.com/DrMax-Group-Replenishment/model/ElasticNet_with_CV"
+# MAGIC %run "/Repos/adm.test.tomko@drmaxtest.onmicrosoft.com/DrMax-Group-Replenishment/model/ElasticNet__with_CV"
 
 # COMMAND ----------
 
