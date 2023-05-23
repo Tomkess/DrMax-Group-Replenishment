@@ -13,6 +13,10 @@
 
 # COMMAND ----------
 
+# MAGIC %run /Repos/adm.test.tomko@drmaxtest.onmicrosoft.com/DrMax-Group-Replenishment/src/removeBlobFiles
+
+# COMMAND ----------
+
 import platform
 from pyspark.sql import functions as F
 
