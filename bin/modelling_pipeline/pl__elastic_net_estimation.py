@@ -32,7 +32,7 @@ if platform.uname().node == 'GL22WD4W2DY33':
     local_path = '/data/tmp_data.csv'
 else:
     proj_path = ''
-    local_path = '/dbfs/data/tmp_data.csv'
+    local_path = '/dbfs/tmp_data.csv'
 
 # COMMAND ----------
 
